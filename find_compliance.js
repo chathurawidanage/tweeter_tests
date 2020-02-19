@@ -8,8 +8,9 @@ Mongo.getClient().then(client => {
             let t1 = Date.now();
             await all.forEach(record => {
                 if (record.delete && record.delete.favorite && record.delete.favorite.tweet_id_str) {
-                    let tweets_for_id = tweets.find({id: {$eq: record.delete.id}});
+                    let tweets_for_id = tweets.find({id_str: {$eq: record.delete.favorite.tweet_id_str}});
                     tweets_for_id.forEach(tweet => {
+                        console.log(tweet.id_str,avorite.tweet_id_str);
                         // found
                     });
                 } else {
