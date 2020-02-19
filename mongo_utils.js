@@ -18,11 +18,13 @@ const user = encodeURIComponent(process.env.MNG_USER);
 const password = encodeURIComponent(process.env.MNG_PW);
 const authMechanism = 'DEFAULT';
 
+const options = {keepAlive: 300000, connectTimeoutMS: 30000};
+
 module.exports.getClient = function getClient() {
     if (connectedClient != null) {
         return connectedClient;
     } else {
-        connectedClient = MongoClient.connect(f(url, user, password, authMechanism));
+        connectedClient = MongoClient.connect(f(url, user, password, authMechanism), options);
         return connectedClient;
     }
 };
