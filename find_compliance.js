@@ -13,17 +13,10 @@ Mongo.getClient().then(client => {
                 });
             }
 
-            let all = compliance.find();
+            let all = compliance.find({"delete.status":{$exists:true}});
             let t1 = Date.now();
             all.forEach(record => {
-                if (record.delete && record.delete.favorite && record.delete.favorite.tweet_id_str) {
-                    find_tweet(record.delete.favorite.tweet_id_str);
-                } else if (record.delete && record.delete.status && record.delete.status.id_str) {
-                    find_tweet(record.delete.status.id_str);
-                } else {
-                    // other records
-                    //console.log("record",record)
-                }
+                find_tweet(record.delete.status.id_str);
             }).then(done => {
                 console.log("Time taken ", Date.now() - t1);
             }).catch(err => {
