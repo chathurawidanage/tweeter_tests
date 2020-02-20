@@ -13,12 +13,19 @@ Mongo.getClient().then(client => {
     Mongo.createCollection(db, 'tweets').then(tweetsCol => {
         console.log("Starting tweets stream...");
         const stream = twitterClient.stream('statuses/sample');
+        let buffer = [];
         stream.on('data', function (event) {
-            tweetsCol.insertOne(event).then(r => {
-                //console.debug(r);
-            }).catch(err => {
-                console.log("Error in insertion", err);
-            });
+            buffer.push(event);
+            if (buffer.length > 1000) {
+                const buffer_copy = buffer;
+                buffer = [];
+                tweetsCol.insertMany(buffer_copy).then(r => {
+                    //console.debug(r);
+                    // buffer copy is garbage collectible
+                }).catch(err => {
+                    console.log("Error in insertion", err);
+                });
+            }
         });
     });
 });
