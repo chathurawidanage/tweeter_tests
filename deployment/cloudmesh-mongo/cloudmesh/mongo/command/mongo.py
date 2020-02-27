@@ -22,7 +22,7 @@ class MongoCommand(PluginCommand):
                           --names=NAMES
                           --shards=SHARDS
                           --replicas=REPLICAS
-]
+
           This command does some useful things.
 
           Arguments:
@@ -32,11 +32,11 @@ class MongoCommand(PluginCommand):
               -f      specify the file
 
           Description:
-             mongo deploy --config FILE
-             mongo deploy --ips=10.0.0.[1-5]
-                          --names=master,worker[2-5]
-                          --shards=3
-                          --replicas=2
+          >   mongo deploy --config FILE
+          >   mongo deploy --ips=10.0.0.[1-5]
+          >                --names=master,worker[2-5]
+          >                --shards=3
+          >                --replicas=2
         """
 
         map_parameters(arguments,
@@ -63,5 +63,7 @@ class MongoCommand(PluginCommand):
             print(arguments.shards)
             print(arguments.replicas)
 
+        else:
+            Console.error("parameters not specified correctly")
 
         return ""

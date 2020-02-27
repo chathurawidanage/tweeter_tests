@@ -14,6 +14,7 @@ mongo deploy --ips=10.0.0.[1-5]
 
 ```
 git clone https://github.iu.edu/truthy-team/MoeBackendReplacement.git
-cd MoeBackendReplacement
-pip install -r requirements.txt
+cd MoeBackendReplacement/development/cloudmesh-mongo
+python3.8 -m venv MONGO
+source MONGO/bin/activate
 pip install -e .
