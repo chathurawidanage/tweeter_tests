@@ -6,7 +6,9 @@ shard:
 nodes:
   auth:
     username: "chathura"
-  mongos: "localhosts"
-  config: ["ip1","ip2","ip3"]
-  data: ["ip1","ip2","ip3"]
+  port: 27018
+  dbPath: "/tmp"
+  mongos: "localhost"
+  config: ["localhost","localhost","localhost"]
+  data: ["localhost","localhost","localhost"]
 
