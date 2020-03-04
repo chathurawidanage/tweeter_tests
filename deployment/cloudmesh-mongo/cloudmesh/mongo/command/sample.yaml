@@ -1,0 +1,12 @@
+shard:
+  mode: "ranged"
+  key: "timestamp-ms"
+  count: 3
+  replications: 1
+nodes:
+  auth:
+    username: "chathura"
+  mongos: "localhosts"
+  config: ["ip1","ip2","ip3"]
+  data: ["ip1","ip2","ip3"]
+
